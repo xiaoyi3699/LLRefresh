@@ -105,8 +105,10 @@
             }];
         }
         else {
-            self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
-            [self.scrollView setContentOffset:CGPointMake(0, LLRefreshFooterHeight+_contentOffsetY) animated:NO];
+            [UIView animateWithDuration:.35 animations:^{
+                self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+                [self.scrollView setContentOffset:CGPointMake(0, LLRefreshFooterHeight+_contentOffsetY) animated:NO];
+            }];
         }
     }
 }
