@@ -59,6 +59,7 @@
     return cell;
 }
 
+#pragma mark - LLRefresh
 //下拉刷新
 - (void)headerRefresh {
     _page = 0;
@@ -76,6 +77,7 @@
     [_tableView.LLRefreshFooter LL_EndRefresh];
 }
 
+//模拟加载数据
 - (void)reloadData {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         for (NSInteger i = 0; i < 20; i ++) {
@@ -87,5 +89,6 @@
         [_tableView reloadData];
     });
 }
+#pragma mark -
 
 @end
