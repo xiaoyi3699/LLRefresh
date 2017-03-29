@@ -25,7 +25,7 @@
     _messageLabel = [[UILabel alloc] initWithFrame:self.bounds];
     _messageLabel.text = @"上拉可以加载更多";
     _messageLabel.textAlignment = NSTextAlignmentCenter;
-    _messageLabel.textColor = R_G_B(150, 150, 150);
+    _messageLabel.textColor = [UIColor colorWithRed:100/255. green:100/255. blue:100/255. alpha:1];
     [self addSubview:_messageLabel];
 }
 
@@ -67,8 +67,9 @@
     else {
         _contentOffsetY = 0.0;
     }
-    
-    self.minY = self.scrollView.bounds.size.height+_contentOffsetY;
+    CGRect frame = self.frame;
+    frame.origin.y = self.scrollView.bounds.size.height+_contentOffsetY;
+    self.frame = frame;
 }
 
 - (void)scrollViewPanStateDidChange:(NSDictionary *)change{

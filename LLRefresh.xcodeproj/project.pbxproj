@@ -15,6 +15,10 @@
 		C677725A1E8B62CD0063969E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C67772581E8B62CD0063969E /* LaunchScreen.storyboard */; };
 		C67772651E8B62CD0063969E /* LLRefreshTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C67772641E8B62CD0063969E /* LLRefreshTests.m */; };
 		C67772701E8B62CD0063969E /* LLRefreshUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = C677726F1E8B62CD0063969E /* LLRefreshUITests.m */; };
+		C67772871E8B62F80063969E /* LLRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = C67772801E8B62F80063969E /* LLRefreshComponent.m */; };
+		C67772881E8B62F80063969E /* LLRefreshFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = C67772821E8B62F80063969E /* LLRefreshFooterView.m */; };
+		C67772891E8B62F80063969E /* LLRefreshHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C67772841E8B62F80063969E /* LLRefreshHeaderView.m */; };
+		C677728A1E8B62F80063969E /* UIScrollView+LLRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = C67772861E8B62F80063969E /* UIScrollView+LLRefresh.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +55,15 @@
 		C677726B1E8B62CD0063969E /* LLRefreshUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LLRefreshUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C677726F1E8B62CD0063969E /* LLRefreshUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRefreshUITests.m; sourceTree = "<group>"; };
 		C67772711E8B62CD0063969E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C677727E1E8B62F80063969E /* LLRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLRefresh.h; sourceTree = "<group>"; };
+		C677727F1E8B62F80063969E /* LLRefreshComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLRefreshComponent.h; sourceTree = "<group>"; };
+		C67772801E8B62F80063969E /* LLRefreshComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLRefreshComponent.m; sourceTree = "<group>"; };
+		C67772811E8B62F80063969E /* LLRefreshFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLRefreshFooterView.h; sourceTree = "<group>"; };
+		C67772821E8B62F80063969E /* LLRefreshFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLRefreshFooterView.m; sourceTree = "<group>"; };
+		C67772831E8B62F80063969E /* LLRefreshHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLRefreshHeaderView.h; sourceTree = "<group>"; };
+		C67772841E8B62F80063969E /* LLRefreshHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLRefreshHeaderView.m; sourceTree = "<group>"; };
+		C67772851E8B62F80063969E /* UIScrollView+LLRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+LLRefresh.h"; sourceTree = "<group>"; };
+		C67772861E8B62F80063969E /* UIScrollView+LLRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+LLRefresh.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +114,7 @@
 		C67772491E8B62CC0063969E /* LLRefresh */ = {
 			isa = PBXGroup;
 			children = (
+				C677727D1E8B62F80063969E /* LLRefresh */,
 				C677724D1E8B62CC0063969E /* AppDelegate.h */,
 				C677724E1E8B62CC0063969E /* AppDelegate.m */,
 				C67772501E8B62CC0063969E /* ViewController.h */,
@@ -138,6 +152,22 @@
 				C67772711E8B62CD0063969E /* Info.plist */,
 			);
 			path = LLRefreshUITests;
+			sourceTree = "<group>";
+		};
+		C677727D1E8B62F80063969E /* LLRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				C677727E1E8B62F80063969E /* LLRefresh.h */,
+				C677727F1E8B62F80063969E /* LLRefreshComponent.h */,
+				C67772801E8B62F80063969E /* LLRefreshComponent.m */,
+				C67772811E8B62F80063969E /* LLRefreshFooterView.h */,
+				C67772821E8B62F80063969E /* LLRefreshFooterView.m */,
+				C67772831E8B62F80063969E /* LLRefreshHeaderView.h */,
+				C67772841E8B62F80063969E /* LLRefreshHeaderView.m */,
+				C67772851E8B62F80063969E /* UIScrollView+LLRefresh.h */,
+				C67772861E8B62F80063969E /* UIScrollView+LLRefresh.m */,
+			);
+			path = LLRefresh;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -207,7 +237,7 @@
 				TargetAttributes = {
 					C67772461E8B62CC0063969E = {
 						CreatedOnToolsVersion = 8.2;
-						DevelopmentTeam = 78835ZHBFS;
+						DevelopmentTeam = D83H98L7Y7;
 						ProvisioningStyle = Automatic;
 					};
 					C677725F1E8B62CD0063969E = {
@@ -277,8 +307,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C67772521E8B62CC0063969E /* ViewController.m in Sources */,
+				C67772871E8B62F80063969E /* LLRefreshComponent.m in Sources */,
+				C67772881E8B62F80063969E /* LLRefreshFooterView.m in Sources */,
 				C677724F1E8B62CC0063969E /* AppDelegate.m in Sources */,
 				C677724C1E8B62CC0063969E /* main.m in Sources */,
+				C677728A1E8B62F80063969E /* UIScrollView+LLRefresh.m in Sources */,
+				C67772891E8B62F80063969E /* LLRefreshHeaderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,11 +461,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 78835ZHBFS;
+				DEVELOPMENT_TEAM = D83H98L7Y7;
 				INFOPLIST_FILE = LLRefresh/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.maochao.LLRefresh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -439,11 +474,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 78835ZHBFS;
+				DEVELOPMENT_TEAM = D83H98L7Y7;
 				INFOPLIST_FILE = LLRefresh/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.maochao.LLRefresh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
