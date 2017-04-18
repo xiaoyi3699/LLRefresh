@@ -50,6 +50,10 @@
     [super scrollViewContentOffsetDidChange:change];
     if (self.scrollView.contentOffset.y <= 0) return;
     
+    if (self.refreshState == LLRefreshStateNoMoreData) {
+        return;
+    }
+    
     if (self.scrollView.contentOffset.y < LLRefreshFooterHeight+_contentOffsetY) {
         [self LL_RefreshNormal];
     }
@@ -82,6 +86,7 @@
 }
 
 - (void)LL_BeginRefresh {
+    
     if (self.isRefreshing == NO) {
         [super LL_BeginRefresh];
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -99,7 +104,7 @@
 - (void)LL_EndRefresh {
     if (self.isRefreshing) {
         [super LL_EndRefresh];
-        if (_contentOffsetY == 0) {
+        if (_contentOffsetY == 0 || self.refreshState == LLRefreshStateNoMoreData) {
             [UIView animateWithDuration:.35 animations:^{
                 self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
             }];

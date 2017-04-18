@@ -116,7 +116,12 @@ NSString *const LLRefreshKeyPathPanState      = @"state";
 /** 结束刷新 */
 - (void)LL_EndRefresh{
     self.isRefreshing = NO;
-    self.refreshState = LLRefreshStateNormal;
+    if (self.refreshState == LLRefreshStateNoMoreData) {
+        self.refreshState = LLRefreshStateNoMoreData;
+    }
+    else {
+        self.refreshState = LLRefreshStateNormal;
+    }
 }
 
 - (void)createViews{};

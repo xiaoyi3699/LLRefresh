@@ -80,11 +80,16 @@
 //模拟加载数据
 - (void)reloadData {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        for (NSInteger i = 0; i < 20; i ++) {
-            NSString *testStr = [NSString stringWithFormat:@"第%ld页数据",(long)_page];
-            [_testDatas addObject:testStr];
+        if (_page < 3) {//模拟加载数据,设置只能加载3页
+            for (NSInteger i = 0; i < 20; i ++) {
+                NSString *testStr = [NSString stringWithFormat:@"第%ld页数据",(long)_page];
+                [_testDatas addObject:testStr];
+            }
+            _page ++;
         }
-        _page ++;
+        else {//模拟数据请求完毕
+            _tableView.LLRefreshFooter.refreshState = LLRefreshStateNoMoreData;
+        }
         [self endRefresh];
         [_tableView reloadData];
     });
