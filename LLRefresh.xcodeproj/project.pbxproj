@@ -463,6 +463,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = D83H98L7Y7;
 				INFOPLIST_FILE = LLRefresh/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.maochao.LLRefresh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -476,6 +477,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = D83H98L7Y7;
 				INFOPLIST_FILE = LLRefresh/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.maochao.LLRefresh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -552,6 +554,7 @@
 				C67772761E8B62CD0063969E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C67772771E8B62CD0063969E /* Build configuration list for PBXNativeTarget "LLRefreshTests" */ = {
 			isa = XCConfigurationList;
@@ -560,6 +563,7 @@
 				C67772791E8B62CD0063969E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C677727A1E8B62CD0063969E /* Build configuration list for PBXNativeTarget "LLRefreshUITests" */ = {
 			isa = XCConfigurationList;
@@ -568,6 +572,7 @@
 				C677727C1E8B62CD0063969E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
