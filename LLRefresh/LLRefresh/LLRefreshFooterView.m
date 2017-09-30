@@ -127,15 +127,26 @@
     if (self.isRefreshing) {
         [super LL_EndRefresh:more];
         
-        if (_contentOffsetY == 0 || more == NO) {
+        if (more == NO) {
             [UIView animateWithDuration:.35 animations:^{
                 self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
             }];
         }
+        else if (_contentOffsetY == 0) {
+            
+            if (self.scrollView.contentSize.height >= self.scrollView.bounds.size.height) {
+                self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+            }
+            else {
+                [UIView animateWithDuration:.35 animations:^{
+                    self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+                }];
+            }
+        }
         else {
             //[UIView animateWithDuration:.35 animations:^{
-                self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
-                self.scrollView.contentOffset = CGPointMake(0, _lastContentHeight-self.scrollView.bounds.size.height+LLRefreshFooterHeight);
+            self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+            self.scrollView.contentOffset = CGPointMake(0, _lastContentHeight-self.scrollView.bounds.size.height+LLRefreshFooterHeight);
             //}];
         }
     }
