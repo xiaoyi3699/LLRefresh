@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		75BD5F401F7F902B00AF16A6 /* LLRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 75BD5F381F7F902B00AF16A6 /* LLRefreshComponent.m */; };
+		75BD5F411F7F902B00AF16A6 /* UIScrollView+LLRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 75BD5F391F7F902B00AF16A6 /* UIScrollView+LLRefresh.m */; };
+		75BD5F421F7F902B00AF16A6 /* LLRefreshHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75BD5F3A1F7F902B00AF16A6 /* LLRefreshHeaderView.m */; };
+		75BD5F431F7F902B00AF16A6 /* LLRefreshFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75BD5F3F1F7F902B00AF16A6 /* LLRefreshFooterView.m */; };
 		C677724C1E8B62CC0063969E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C677724B1E8B62CC0063969E /* main.m */; };
 		C677724F1E8B62CC0063969E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C677724E1E8B62CC0063969E /* AppDelegate.m */; };
 		C67772521E8B62CC0063969E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C67772511E8B62CC0063969E /* ViewController.m */; };
@@ -35,6 +39,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		75BD5F371F7F902B00AF16A6 /* LLRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLRefresh.h; sourceTree = "<group>"; };
+		75BD5F381F7F902B00AF16A6 /* LLRefreshComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLRefreshComponent.m; sourceTree = "<group>"; };
+		75BD5F391F7F902B00AF16A6 /* UIScrollView+LLRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+LLRefresh.m"; sourceTree = "<group>"; };
+		75BD5F3A1F7F902B00AF16A6 /* LLRefreshHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLRefreshHeaderView.m; sourceTree = "<group>"; };
+		75BD5F3B1F7F902B00AF16A6 /* LLRefreshFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLRefreshFooterView.h; sourceTree = "<group>"; };
+		75BD5F3C1F7F902B00AF16A6 /* LLRefreshComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLRefreshComponent.h; sourceTree = "<group>"; };
+		75BD5F3D1F7F902B00AF16A6 /* UIScrollView+LLRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+LLRefresh.h"; sourceTree = "<group>"; };
+		75BD5F3E1F7F902B00AF16A6 /* LLRefreshHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLRefreshHeaderView.h; sourceTree = "<group>"; };
+		75BD5F3F1F7F902B00AF16A6 /* LLRefreshFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLRefreshFooterView.m; sourceTree = "<group>"; };
 		C67772471E8B62CC0063969E /* LLRefresh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LLRefresh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C677724B1E8B62CC0063969E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C677724D1E8B62CC0063969E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -78,6 +91,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		75BD5F361F7F902B00AF16A6 /* LLRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				75BD5F371F7F902B00AF16A6 /* LLRefresh.h */,
+				75BD5F3C1F7F902B00AF16A6 /* LLRefreshComponent.h */,
+				75BD5F381F7F902B00AF16A6 /* LLRefreshComponent.m */,
+				75BD5F3E1F7F902B00AF16A6 /* LLRefreshHeaderView.h */,
+				75BD5F3A1F7F902B00AF16A6 /* LLRefreshHeaderView.m */,
+				75BD5F3B1F7F902B00AF16A6 /* LLRefreshFooterView.h */,
+				75BD5F3F1F7F902B00AF16A6 /* LLRefreshFooterView.m */,
+				75BD5F3D1F7F902B00AF16A6 /* UIScrollView+LLRefresh.h */,
+				75BD5F391F7F902B00AF16A6 /* UIScrollView+LLRefresh.m */,
+			);
+			path = LLRefresh;
+			sourceTree = "<group>";
+		};
 		C677723E1E8B62CC0063969E = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +130,7 @@
 		C67772491E8B62CC0063969E /* LLRefresh */ = {
 			isa = PBXGroup;
 			children = (
+				75BD5F361F7F902B00AF16A6 /* LLRefresh */,
 				C677724D1E8B62CC0063969E /* AppDelegate.h */,
 				C677724E1E8B62CC0063969E /* AppDelegate.m */,
 				C67772501E8B62CC0063969E /* ViewController.h */,
@@ -277,8 +307,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C67772521E8B62CC0063969E /* ViewController.m in Sources */,
+				75BD5F401F7F902B00AF16A6 /* LLRefreshComponent.m in Sources */,
 				C677724F1E8B62CC0063969E /* AppDelegate.m in Sources */,
+				75BD5F411F7F902B00AF16A6 /* UIScrollView+LLRefresh.m in Sources */,
 				C677724C1E8B62CC0063969E /* main.m in Sources */,
+				75BD5F421F7F902B00AF16A6 /* LLRefreshHeaderView.m in Sources */,
+				75BD5F431F7F902B00AF16A6 /* LLRefreshFooterView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
