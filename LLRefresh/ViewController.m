@@ -9,6 +9,8 @@
 #import "ViewController.h"
 #import "LLRefresh.h"
 
+#define SCREEN_HEIGHT  [UIScreen mainScreen].bounds.size.height
+#define iPhoneX        (SCREEN_HEIGHT==812) //是否是iPhoneX
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource>{
     UITableView *tableView;
     NSInteger   _page;
@@ -24,7 +26,17 @@
     [super viewDidLoad];
     
     _testDatas = [NSMutableArray arrayWithCapacity:10];
-    tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
+    
+    CGRect rect = self.view.bounds;
+    rect.origin.y = CGRectGetMaxY(self.navigationController.navigationBar.frame);
+    if (iPhoneX) {
+        rect.size.height -= (88+83);
+    }
+    else {
+        rect.size.height -= (64+49);
+    }
+    
+    tableView = [[UITableView alloc] initWithFrame:rect];
     tableView.delegate = self;
     tableView.dataSource = self;
     if (@available(iOS 11.0, *)) {
