@@ -63,10 +63,10 @@
     [self reloadData];
 }
 
-- (void)endRefresh:(BOOL)more {
+- (void)endRefresh {
     [tableView reloadData];
-    [tableView.LLRefreshHeader LL_EndRefresh:more];
-    [tableView.LLRefreshFooter LL_EndRefresh:more];
+    [tableView.LLRefreshHeader LL_EndRefresh];
+    [tableView.LLRefreshFooter LL_EndRefresh];
 }
 
 //模拟加载数据
@@ -78,43 +78,14 @@
                 [_testDatas addObject:testStr];
             }
             _page ++;
-            [self endRefresh:YES];
         }
-        else {//模拟数据请求完毕
-            [self endRefresh:NO];
-        }
+        [self endRefresh];
     });
 }
 
 #pragma mark - UITableViewDelegate,UITableViewDataSource
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return _testDatas.count;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row %3 == 0) {
-        return 88;
-    }
-    if (indexPath.row %3 == 1) {
-        return 66;
-    }
-    return 44;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 0;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -127,15 +98,6 @@
         cell.textLabel.text = _testDatas[indexPath.row];
     }
     return cell;
-}
-
-- (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-        NSLog(@"删除");
-    }];
-    deleteAction.backgroundColor = [UIColor redColor];
-    
-    return @[deleteAction];
 }
 
 @end

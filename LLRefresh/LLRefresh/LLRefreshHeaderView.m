@@ -23,6 +23,15 @@
     return refreshHeader;
 }
 
+- (void)layoutSubviews {
+    
+    CGRect rect = self.frame;
+    rect.origin.y = -LLRefreshHeaderHeight;
+    self.frame = rect;
+    
+    [super layoutSubviews];
+}
+
 - (void)createViews {
     [super createViews];
     _messageLabel = [[UILabel alloc] initWithFrame:self.bounds];
@@ -43,7 +52,7 @@
         _messageLabel.text = @"松开立即刷新";
     }
     else if (refreshState == LLRefreshStateRefreshing) {
-        _messageLabel.text = @"正在刷新数据中...";
+        _messageLabel.text = @"正在刷新数据...";
     }
     else {
         _messageLabel.text = @"没有更多数据了";
@@ -75,7 +84,7 @@
 - (void)LL_BeginRefresh {
     if (self.isRefreshing == NO) {
         [super LL_BeginRefresh];
-       // dispatch_async(dispatch_get_main_queue(), ^{
+        //dispatch_async(dispatch_get_main_queue(), ^{
             [UIView animateWithDuration:.35 animations:^{
                 self.scrollView.contentInset = UIEdgeInsetsMake(LLRefreshHeaderHeight, 0, 0, 0);
             } completion:^(BOOL finished) {
@@ -91,9 +100,24 @@
     if (self.isRefreshing) {
         [super LL_EndRefresh:more];
         [[NSNotificationCenter defaultCenter] postNotificationName:LLRefreshMoreData object:@(more)];
-        [UIView animateWithDuration:.35 animations:^{
-            self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
-        }];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [UIView animateWithDuration:.35 animations:^{
+                self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+            }];
+        });
+    }
+}
+
+- (void)LL_EndRefresh {
+    if (self.isRefreshing) {
+        [super LL_EndRefresh:YES];
+        [[NSNotificationCenter defaultCenter] postNotificationName:LLRefreshMoreData object:@(YES)];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [UIView animateWithDuration:.35 animations:^{
+                self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+            }];
+        });
+        
     }
 }
 

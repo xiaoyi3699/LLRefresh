@@ -40,6 +40,21 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (void)layoutSubviews {
+    
+    if (self.scrollView.contentSize.height > self.scrollView.bounds.size.height) {
+        _contentOffsetY = self.scrollView.contentSize.height-self.scrollView.bounds.size.height;
+    }
+    else {
+        _contentOffsetY = 0.0;
+    }
+    CGRect frame = self.frame;
+    frame.origin.y = self.scrollView.bounds.size.height+_contentOffsetY;
+    self.frame = frame;
+    
+    [super layoutSubviews];
+}
+
 - (void)createViews {
     [super createViews];
     _messageLabel = [[UILabel alloc] initWithFrame:self.bounds];
@@ -60,7 +75,7 @@
         _messageLabel.text = @"松开立即加载更多";
     }
     else if (refreshState == LLRefreshStateRefreshing) {
-        _messageLabel.text = @"正在加载数据中...";
+        _messageLabel.text = @"正在加载数据...";
     }
     else {
         _messageLabel.text = @"没有更多数据了";
@@ -126,29 +141,61 @@
 - (void)LL_EndRefresh:(BOOL)more {
     if (self.isRefreshing) {
         [super LL_EndRefresh:more];
-        
-        if (more == NO) {
-            [UIView animateWithDuration:.35 animations:^{
-                self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
-            }];
-        }
-        else if (_contentOffsetY == 0) {
-            
-            if (self.scrollView.contentSize.height >= self.scrollView.bounds.size.height) {
-                self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
-            }
-            else {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (more == NO) {
                 [UIView animateWithDuration:.35 animations:^{
                     self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
                 }];
             }
-        }
-        else {
-            //[UIView animateWithDuration:.35 animations:^{
-            self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
-            self.scrollView.contentOffset = CGPointMake(0, _lastContentHeight-self.scrollView.bounds.size.height+LLRefreshFooterHeight);
-            //}];
-        }
+            else if (_contentOffsetY == 0) {
+                
+                if (self.scrollView.contentSize.height >= self.scrollView.bounds.size.height) {
+                    self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+                }
+                else {
+                    [UIView animateWithDuration:.35 animations:^{
+                        self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+                    }];
+                }
+            }
+            else {
+                //[UIView animateWithDuration:.35 animations:^{
+                self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+                self.scrollView.contentOffset = CGPointMake(0, _lastContentHeight-self.scrollView.bounds.size.height+LLRefreshFooterHeight);
+                //}];
+            }
+        });
+    }
+}
+
+- (void)LL_EndRefresh {
+    if (self.isRefreshing) {
+        BOOL more = !(_lastContentHeight == self.scrollView.contentSize.height);
+        [super LL_EndRefresh:more];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (more == NO) {
+                [UIView animateWithDuration:.35 animations:^{
+                    self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+                }];
+            }
+            else if (_contentOffsetY == 0) {
+                
+                if (self.scrollView.contentSize.height >= self.scrollView.bounds.size.height) {
+                    self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+                }
+                else {
+                    [UIView animateWithDuration:.35 animations:^{
+                        self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+                    }];
+                }
+            }
+            else {
+                //[UIView animateWithDuration:.35 animations:^{
+                self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+                self.scrollView.contentOffset = CGPointMake(0, _lastContentHeight-self.scrollView.bounds.size.height+LLRefreshFooterHeight);
+                //}];
+            }
+        });
     }
 }
 

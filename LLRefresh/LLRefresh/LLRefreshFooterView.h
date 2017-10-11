@@ -11,5 +11,6 @@
 @interface LLRefreshFooterView : LLRefreshComponent
 
 + (instancetype)footerWithRefreshingTarget:(id)target refreshingAction:(SEL)action;
+- (void)LL_EndRefresh;
 
 @end

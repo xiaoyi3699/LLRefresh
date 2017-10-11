@@ -11,5 +11,6 @@
 @interface LLRefreshHeaderView : LLRefreshComponent
 
 + (instancetype)headerWithRefreshingTarget:(id)target refreshingAction:(SEL)action;
+- (void)LL_EndRefresh;
 
 @end

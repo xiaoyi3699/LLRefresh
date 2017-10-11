@@ -45,8 +45,8 @@ NSString *const LLRefreshKeyPathPanState      = @"state";
     // 如果不是UIScrollView，不做任何事情
     if ([newSuperview isKindOfClass:[UIScrollView class]]) {
         
-        //关闭UITableView的高度预估
         if ([newSuperview isKindOfClass:[UITableView class]]) {
+            //关闭UITableView的高度预估
             ((UITableView *)newSuperview).estimatedRowHeight = 0;
             ((UITableView *)newSuperview).estimatedSectionHeaderHeight = 0;
             ((UITableView *)newSuperview).estimatedSectionFooterHeight = 0;
