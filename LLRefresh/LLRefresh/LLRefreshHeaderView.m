@@ -12,9 +12,7 @@
 // 运行时objc_msgSend
 #define LLRefreshMsgSend(...)       ((void (*)(void *, SEL, UIView *))objc_msgSend)(__VA_ARGS__)
 #define LLRefreshMsgTarget(target)  (__bridge void *)(target)
-@implementation LLRefreshHeaderView {
-    UILabel *_messageLabel;
-}
+@implementation LLRefreshHeaderView
 
 + (instancetype)headerWithRefreshingTarget:(id)target refreshingAction:(SEL)action {
     LLRefreshHeaderView *refreshHeader = [[self alloc] init];
@@ -29,34 +27,53 @@
     rect.origin.y = -LLRefreshHeaderHeight;
     self.frame = rect;
     
+    NSInteger w = ceil([_laseTimeLabel.text sizeWithAttributes:@{NSFontAttributeName:LL_TIME_FONT}].width);
+    self.arrowView.frame = CGRectMake((self.bounds.size.width-w)/2-35, (LLRefreshHeaderHeight-40)/2.0, 15, 40);
+    
+    self.loadingView.center = self.arrowView.center;
+    self.loadingView.color = LL_REFRESH_COLOR;
+    
     [super layoutSubviews];
 }
 
 - (void)createViews {
     [super createViews];
-    _messageLabel = [[UILabel alloc] initWithFrame:self.bounds];
-    _messageLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    CGFloat labelH = (LLRefreshHeaderHeight-10)/2;
+    _messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, self.bounds.size.width, labelH)];
+    _messageLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+    _messageLabel.font = LL_REFRESH_FONT;
     _messageLabel.text = @"下拉可以刷新";
     _messageLabel.textAlignment = NSTextAlignmentCenter;
-    _messageLabel.textColor = [UIColor colorWithRed:100/255. green:100/255. blue:100/255. alpha:1];
+    _messageLabel.textColor = LL_REFRESH_COLOR;
     [self addSubview:_messageLabel];
+    
+    NSString *lastTime = [LLRefreshHelper LL_getRefreshTime:LLRefreshHeaderTime];
+    _laseTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_messageLabel.frame), self.bounds.size.width, labelH)];
+    _laseTimeLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+    _laseTimeLabel.font = LL_TIME_FONT;
+    _laseTimeLabel.text = lastTime;
+    _laseTimeLabel.textAlignment = NSTextAlignmentCenter;
+    _laseTimeLabel.textColor = LL_TIME_COLOR;
+    [self addSubview:_laseTimeLabel];
 }
 
 - (void)updateRefreshState:(LLRefreshState)refreshState {
     if (refreshState == _refreshState) return;
     
+    NSString *refreshText;
     if (refreshState == LLRefreshStateNormal) {
-        _messageLabel.text = @"下拉可以刷新";
+        refreshText = @"下拉可以刷新";
     }
     else if (refreshState == LLRefreshStateWillRefresh) {
-        _messageLabel.text = @"松开立即刷新";
+        refreshText = @"松开立即刷新";
     }
     else if (refreshState == LLRefreshStateRefreshing) {
-        _messageLabel.text = @"正在刷新数据...";
+        refreshText = @"正在刷新数据...";
     }
     else {
-        _messageLabel.text = @"没有更多数据了";
+        refreshText = @"没有更多数据了";
     }
+    _messageLabel.text = refreshText;
     _refreshState = refreshState;
 }
 
@@ -64,12 +81,18 @@
     [super scrollViewContentOffsetDidChange:change];
     if (self.scrollView.contentOffset.y >= 0) return;
     
+    CATransform3D transform3D = CATransform3DIdentity;
+    
     if (self.scrollView.contentOffset.y > -LLRefreshHeaderHeight) {
         [self LL_RefreshNormal];
     }
     else {
         [self LL_WillRefresh];
+        transform3D = LL_TRANS_FORM;
     }
+    [UIView animateWithDuration:.3 animations:^{
+        self.arrowView.layer.transform = transform3D;
+    }];
 }
 
 - (void)scrollViewPanStateDidChange:(NSDictionary *)change{
@@ -78,6 +101,9 @@
         if (self.scrollView.contentOffset.y <= -LLRefreshHeaderHeight) {
             [self LL_BeginRefresh];
         }
+    }
+    else if (self.scrollView.panGestureRecognizer.state == UIGestureRecognizerStateBegan) {
+        self.arrowView.hidden = NO;
     }
 }
 

@@ -13,7 +13,6 @@
 #define LLRefreshMsgSend(...)       ((void (*)(void *, SEL, UIView *))objc_msgSend)(__VA_ARGS__)
 #define LLRefreshMsgTarget(target)  (__bridge void *)(target)
 @implementation LLRefreshFooterView{
-    UILabel *_messageLabel;
     CGFloat _contentOffsetY;
     CGFloat _lastContentHeight;
 }
@@ -27,6 +26,7 @@
 }
 
 - (void)refreshMoreData:(NSNotification *)notification {
+    
     BOOL moreData = [notification.object boolValue];
     if (moreData) {
         [self LL_RefreshNormal];
@@ -34,6 +34,8 @@
     else {
         [self LL_NoMoreData];
     }
+    
+    [NSUserDefaults standardUserDefaults];
 }
 
 - (void)dealloc {
@@ -52,16 +54,23 @@
     frame.origin.y = self.scrollView.bounds.size.height+_contentOffsetY;
     self.frame = frame;
     
+    NSInteger w = ceil([_messageLabel.text sizeWithAttributes:@{NSFontAttributeName:LL_TIME_FONT}].width);
+    self.arrowView.frame = CGRectMake((self.bounds.size.width-w)/2-35, (LLRefreshHeaderHeight-40)/2.0, 15, 40);
+    
+    self.loadingView.center = self.arrowView.center;
+    self.loadingView.color = LL_REFRESH_COLOR;
+    
     [super layoutSubviews];
 }
 
 - (void)createViews {
     [super createViews];
     _messageLabel = [[UILabel alloc] initWithFrame:self.bounds];
-    _messageLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    _messageLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+    _messageLabel.font = LL_REFRESH_FONT;
     _messageLabel.text = @"上拉可以加载更多";
     _messageLabel.textAlignment = NSTextAlignmentCenter;
-    _messageLabel.textColor = [UIColor colorWithRed:100/255. green:100/255. blue:100/255. alpha:1];
+    _messageLabel.textColor = LL_REFRESH_COLOR;
     [self addSubview:_messageLabel];
 }
 
@@ -87,16 +96,25 @@
     [super scrollViewContentOffsetDidChange:change];
     if (self.scrollView.contentOffset.y <= 0) return;
     
-    if (_refreshState == LLRefreshStateNoMoreData) {
-        return;
-    }
+    CATransform3D transform3D = LL_TRANS_FORM;
     
-    if (self.scrollView.contentOffset.y < LLRefreshFooterHeight+_contentOffsetY) {
-        [self LL_RefreshNormal];
+    if (_refreshState == LLRefreshStateNoMoreData) {
+        if (self.scrollView.contentOffset.y >= LLRefreshFooterHeight+_contentOffsetY) {
+            transform3D = CATransform3DIdentity;
+        }
     }
     else {
-        [self LL_WillRefresh];
+        if (self.scrollView.contentOffset.y < LLRefreshFooterHeight+_contentOffsetY) {
+            [self LL_RefreshNormal];
+        }
+        else {
+            [self LL_WillRefresh];
+            transform3D = CATransform3DIdentity;
+        }
     }
+    [UIView animateWithDuration:.3 animations:^{
+        self.arrowView.layer.transform = transform3D;
+    }];
 }
 
 - (void)scrollViewContentSizeDidChange:(NSDictionary *)change {
@@ -119,6 +137,9 @@
         if (self.scrollView.contentOffset.y >= LLRefreshFooterHeight+_contentOffsetY) {
             [self LL_BeginRefresh];
         }
+    }
+    else if (self.scrollView.panGestureRecognizer.state == UIGestureRecognizerStateBegan) {
+        self.arrowView.hidden = NO;
     }
 }
 

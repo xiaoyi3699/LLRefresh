@@ -11,6 +11,8 @@
 		7528F9361F8E032400421D01 /* LLRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 7528F92D1F8E032300421D01 /* LLRefreshComponent.m */; };
 		7528F9371F8E032400421D01 /* LLRefreshHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7528F92E1F8E032300421D01 /* LLRefreshHeaderView.m */; };
 		7528F9381F8E032400421D01 /* UIScrollView+LLRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 7528F92F1F8E032300421D01 /* UIScrollView+LLRefresh.m */; };
+		75EE55C51FA093B80089150F /* LLRefreshHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 75EE55C41FA093B70089150F /* LLRefreshHelper.m */; };
+		75EE55C71FA094F80089150F /* LLRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 75EE55C61FA094F80089150F /* LLRefresh.bundle */; };
 		C677724C1E8B62CC0063969E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C677724B1E8B62CC0063969E /* main.m */; };
 		C677724F1E8B62CC0063969E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C677724E1E8B62CC0063969E /* AppDelegate.m */; };
 		C67772521E8B62CC0063969E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C67772511E8B62CC0063969E /* ViewController.m */; };
@@ -47,6 +49,9 @@
 		7528F9321F8E032400421D01 /* LLRefreshFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLRefreshFooterView.h; sourceTree = "<group>"; };
 		7528F9331F8E032400421D01 /* UIScrollView+LLRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+LLRefresh.h"; sourceTree = "<group>"; };
 		7528F9341F8E032400421D01 /* LLRefreshHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLRefreshHeaderView.h; sourceTree = "<group>"; };
+		75EE55C31FA093B70089150F /* LLRefreshHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLRefreshHelper.h; sourceTree = "<group>"; };
+		75EE55C41FA093B70089150F /* LLRefreshHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLRefreshHelper.m; sourceTree = "<group>"; };
+		75EE55C61FA094F80089150F /* LLRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LLRefresh.bundle; sourceTree = "<group>"; };
 		C67772471E8B62CC0063969E /* LLRefresh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LLRefresh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C677724B1E8B62CC0063969E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C677724D1E8B62CC0063969E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -92,6 +97,7 @@
 		7528F92B1F8E02ED00421D01 /* LLRefresh */ = {
 			isa = PBXGroup;
 			children = (
+				75EE55C61FA094F80089150F /* LLRefresh.bundle */,
 				7528F9311F8E032300421D01 /* LLRefresh.h */,
 				7528F9301F8E032300421D01 /* LLRefreshComponent.h */,
 				7528F92D1F8E032300421D01 /* LLRefreshComponent.m */,
@@ -101,6 +107,8 @@
 				7528F92E1F8E032300421D01 /* LLRefreshHeaderView.m */,
 				7528F9331F8E032400421D01 /* UIScrollView+LLRefresh.h */,
 				7528F92F1F8E032300421D01 /* UIScrollView+LLRefresh.m */,
+				75EE55C31FA093B70089150F /* LLRefreshHelper.h */,
+				75EE55C41FA093B70089150F /* LLRefreshHelper.m */,
 			);
 			path = LLRefresh;
 			sourceTree = "<group>";
@@ -278,6 +286,7 @@
 			files = (
 				C677725A1E8B62CD0063969E /* LaunchScreen.storyboard in Resources */,
 				C67772571E8B62CD0063969E /* Assets.xcassets in Resources */,
+				75EE55C71FA094F80089150F /* LLRefresh.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,6 +314,7 @@
 				C67772521E8B62CC0063969E /* ViewController.m in Sources */,
 				7528F9351F8E032400421D01 /* LLRefreshFooterView.m in Sources */,
 				C677724F1E8B62CC0063969E /* AppDelegate.m in Sources */,
+				75EE55C51FA093B80089150F /* LLRefreshHelper.m in Sources */,
 				7528F9361F8E032400421D01 /* LLRefreshComponent.m in Sources */,
 				C677724C1E8B62CC0063969E /* main.m in Sources */,
 				7528F9381F8E032400421D01 /* UIScrollView+LLRefresh.m in Sources */,

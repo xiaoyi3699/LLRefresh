@@ -7,11 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LLRefreshHelper.h"
+
+#define R_G_B(_r_,_g_,_b_)          \
+[UIColor colorWithRed:_r_/255. green:_g_/255. blue:_b_/255. alpha:1.0]
 
 #define LLRefreshHeaderHeight 60
 #define LLRefreshFooterHeight 60
-#define LLRefreshMoreData     @"LLRefreshMoreData"
-
+#define LL_REFRESH_COLOR      R_G_B(50, 50, 50)
+#define LL_TIME_COLOR         R_G_B(50, 50, 50)
+#define LL_REFRESH_FONT       [UIFont boldSystemFontOfSize:13]
+#define LL_TIME_FONT          [UIFont boldSystemFontOfSize:13]
+#define LL_TRANS_FORM CATransform3DConcat(CATransform3DIdentity, CATransform3DMakeRotation(M_PI+0.000001, 0, 0, 1))
+extern NSString *const LLRefreshHeaderTime;
+extern NSString *const LLRefreshMoreData;
 /** 刷新控件的状态 */
 typedef NS_ENUM(NSInteger, LLRefreshState) {
     
@@ -23,7 +32,12 @@ typedef NS_ENUM(NSInteger, LLRefreshState) {
 
 @interface LLRefreshComponent : UIView{
     LLRefreshState _refreshState;
+    UILabel *_messageLabel;
+    UILabel *_laseTimeLabel;
 }
+
+@property (nonatomic, strong) UIImageView *arrowView;
+@property (nonatomic, strong) UIActivityIndicatorView *loadingView;
 
 /** 是否处于刷新状态 */
 @property (nonatomic, assign) BOOL isRefreshing;
