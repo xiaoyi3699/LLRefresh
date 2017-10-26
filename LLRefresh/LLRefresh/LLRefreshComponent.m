@@ -169,8 +169,8 @@ NSString *const LLRefreshMoreData             = @"LLRefreshMoreData";
     else {
         if ([self isKindOfClass:NSClassFromString(@"LLRefreshHeaderView")]) {
             dispatch_async(dispatch_get_global_queue(0, 0), ^{
-                NSString *value = [LLRefreshHelper LL_getRefreshTime:LLRefreshHeaderTime];
                 [LLRefreshHelper LL_setRefreshTime:LLRefreshHeaderTime];
+                NSString *value = [LLRefreshHelper LL_getRefreshTime:LLRefreshHeaderTime];
                 NSInteger w = ceil([value sizeWithAttributes:@{NSFontAttributeName:LL_TIME_FONT}].width);
                 dispatch_async(dispatch_get_main_queue(), ^{
                     _laseTimeLabel.text = value;
