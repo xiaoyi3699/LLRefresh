@@ -146,7 +146,7 @@
 - (void)LL_BeginRefresh {
     if (self.isRefreshing == NO) {
         [super LL_BeginRefresh];
-        //dispatch_async(dispatch_get_main_queue(), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
             [UIView animateWithDuration:.35 animations:^{
                 self.scrollView.contentInset = UIEdgeInsetsMake(-LLRefreshFooterHeight-_contentOffsetY, 0, 0, 0);
                 _lastContentHeight = self.scrollView.contentSize.height;
@@ -155,7 +155,7 @@
                     LLRefreshMsgSend(LLRefreshMsgTarget(self.refreshingTarget), self.refreshingAction, self);
                 }
             }];
-        //});
+        });
     }
 }
 
