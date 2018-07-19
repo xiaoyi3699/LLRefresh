@@ -54,9 +54,6 @@ NSString *const LLRefreshMoreData             = @"LLRefreshMoreData";
             ((UITableView *)newSuperview).estimatedSectionFooterHeight = 0;
         }
         
-        // 旧的父控件移除监听
-        [self removeObservers];
-        
         // 记录UIScrollView
         _scrollView = (UIScrollView *)newSuperview;
         // 设置永远支持垂直弹簧效果
@@ -67,8 +64,9 @@ NSString *const LLRefreshMoreData             = @"LLRefreshMoreData";
     }
 }
 
-- (void)dealloc {
+- (void)removeFromSuperview {
     [self removeObservers];
+    [super removeFromSuperview];
 }
 
 - (UIImageView *)arrowView {

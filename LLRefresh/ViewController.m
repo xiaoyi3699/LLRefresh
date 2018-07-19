@@ -84,6 +84,11 @@
 }
 
 #pragma mark - UITableViewDelegate,UITableViewDataSource
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    ViewController *vc = [[ViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return _testDatas.count;
 }
@@ -98,6 +103,10 @@
         cell.textLabel.text = _testDatas[indexPath.row];
     }
     return cell;
+}
+
+- (void)dealloc {
+    NSLog(@"%@释放了",NSStringFromClass([self class]));
 }
 
 @end
